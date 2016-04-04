@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  SwiftStudy
+//  QiuBai
 //
 //  Created by 张祥 on 16/4/5.
 //  Copyright © 2016年 张祥. All rights reserved.
@@ -15,7 +15,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         // Override point for customization after application launch.
+        self.window!.backgroundColor = UIColor.whiteColor()
+        self.window!.makeKeyAndVisible()
+        
+        
+        //创建rootTableViewController, 不用引头文件
+        let rootVC:RootTableViewController = RootTableViewController()
+        
+        //创建导航控制器
+        let rootNC:UINavigationController = UINavigationController(rootViewController: rootVC)
+        rootVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Favorites, tag: 1000)
+        
+        //创建tabBarController
+        let tabBar:UITabBarController = UITabBarController()
+        
+        //设置视图控制器
+        tabBar.viewControllers = [rootNC]
+        
+        //设置window的根视图控制器
+        self.window!.rootViewController = tabBar
+        
+
         return true
     }
 
